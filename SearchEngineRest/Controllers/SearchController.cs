@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SearchEngineRest.Models;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
+using SearchEngineRest.Services;
+using SearchEngineRest.Factories;
 using System.Threading.Tasks;
 
 namespace SearchEngineRest.Controllers
@@ -11,25 +11,25 @@ namespace SearchEngineRest.Controllers
     [ApiController]
     public class SearchController : Controller
     {
-        private readonly searchContext _context;
+        private readonly IDocumentService docService;
 
         public SearchController(searchContext context)
         {
-            _context = context;
-        }
-        
-        // GET
-        [HttpGet("{q}")]
-        public Document Search(int q)
-        {
-            var doc = _context.Document.Find(q);
-            return doc;
-        }
-        
-        public string Index()
-        {
-            return "hej";
+            docService = new ServiceFactory().getDocumentService(context);
         }
 
+        // GET
+        [HttpGet("{query}")]
+        public async Task<IActionResult> SearchAsync(string query)
+        {
+            List<Document> strings = await docService.Search(query);
+            if (strings != null && strings.Count > 0)
+            {
+                return Ok(strings);
+            } else
+            {
+                return NotFound();
+            }
+        }
     }
 }
