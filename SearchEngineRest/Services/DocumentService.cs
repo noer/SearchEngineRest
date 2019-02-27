@@ -19,6 +19,7 @@ namespace SearchEngineRest.Services
         public async Task<List<Document>> Search(string query)
         {
             var term = await _context.Term.Where(t => t.Value.Equals(query)).SingleOrDefaultAsync();
+            if (term == null) { return null; }
             List<TermDoc> termDocs = await _context.TermDoc.Where(td => td.Termid == term.Id).ToListAsync();
             List<Document> docs = new List<Document>();
             foreach (TermDoc termDoc in termDocs)
