@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,9 +19,9 @@ namespace SearchEngineRest
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
+            Console.WriteLine();
             services.AddDbContext<searchContext>(opt =>
-                opt.UseNpgsql("Host=localhost;Database=search;Username=search;Password=search123"));
+                opt.UseNpgsql(ConfigurationManager.ConnectionStrings["SearchContext"].ConnectionString));
 
             services.AddScoped<DbContext, searchContext>();
             
