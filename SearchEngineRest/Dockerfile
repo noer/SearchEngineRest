@@ -1,16 +1,20 @@
-FROM microsoft/dotnet:sdk AS build-env
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
 WORKDIR /app
+EXPOSE 80
+EXPOSE 443
 
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
+FROM microsoft/dotnet:2.2-sdk AS build
+WORKDIR /src
+COPY ["SearchEngineRest/SearchEngineRest.csproj", "SearchEngineRest/"]
+RUN dotnet restore "SearchEngineRest/SearchEngineRest.csproj"
+COPY . .
+WORKDIR "/src/SearchEngineRest"
+RUN dotnet build "SearchEngineRest.csproj" -c Release -o /app
 
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o out
+FROM build AS publish
+RUN dotnet publish "SearchEngineRest.csproj" -c Release -o /app
 
-# Build runtime image
-FROM microsoft/dotnet:aspnetcore-runtime
+FROM base AS final
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "SearchEngineRest.dll"]
