@@ -1,8 +1,22 @@
 version: '3.4'
 
 services:
+
+  searchenginelb:
+    image: ${DOCKER_REGISTRY-}searchenginelb
+    build:
+      context: .
+      dockerfile: SearchEngineLB/Dockerfile
+
   searchenginerest:
     image: ${DOCKER_REGISTRY-}searchenginerest
     build:
       context: .
       dockerfile: SearchEngineRest/Dockerfile
+
+  searchenginerest1:
+    image: ${DOCKER_REGISTRY-}searchenginerest
+    build:
+      context: .
+      dockerfile: SearchEngineRest/Dockerfile
+

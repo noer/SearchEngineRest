@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchEngineRest", "SearchE
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{147BAED7-90DB-43C6-8803-D161BBBE3BCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchEngineLB", "SearchEngineLB\SearchEngineLB.csproj", "{6D42FFB7-EEFB-497C-9F81-AC4FEAAB41BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{147BAED7-90DB-43C6-8803-D161BBBE3BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{147BAED7-90DB-43C6-8803-D161BBBE3BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{147BAED7-90DB-43C6-8803-D161BBBE3BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D42FFB7-EEFB-497C-9F81-AC4FEAAB41BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D42FFB7-EEFB-497C-9F81-AC4FEAAB41BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D42FFB7-EEFB-497C-9F81-AC4FEAAB41BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D42FFB7-EEFB-497C-9F81-AC4FEAAB41BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,7 @@ namespace SearchEngineRest.Factories
     {
         private IDocumentService documentService;
 
-        public IDocumentService getDocumentService(searchContext context)
+        public IDocumentService GetDocumentService(SearchContext context)
         {
             if (documentService == null)
             {

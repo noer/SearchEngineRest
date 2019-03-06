@@ -20,10 +20,10 @@ namespace SearchEngineRest
         public void ConfigureServices(IServiceCollection services)
         {
             Console.WriteLine();
-            services.AddDbContext<searchContext>(opt =>
+            services.AddDbContext<SearchContext>(opt =>
                 opt.UseNpgsql(ConfigurationManager.ConnectionStrings["SearchContext"].ConnectionString));
 
-            services.AddScoped<DbContext, searchContext>();
+            services.AddScoped<DbContext, SearchContext>();
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
